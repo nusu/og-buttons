@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OG Buttons</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset Styles */
+        html, body, div, span, p,
+        a, em {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        body {
+          font-family: 'Inter', sans-serif;
+
+          /* colors */
+          --form-button-primary-normal: #5f57ff;
+          --form-button-primary-pressed: #5f57ff;
+          --form-button-destructive-normal: #df1c41;
+          --form-button-destructive-pressed: #df1c41;
+          --neutral-solid-700: #272835;
+          --text-muted-600: #36394a;
+          --background-white: #ffffff;
+          --text-white: #ffffff;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          gap: 24px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeLegibility;
+          font-feature-settings: "cv11", "salt", "ss01", "ss03", "cv01", "cv02", "cv03", "cv04", "cv05", "cv06", "cv09", "cv10";
+        }
+
+        button {
+          font-family: inherit;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 105px;
+          height: 32px;
+          border-radius: 6px;
+          padding: 0;
+          border: 0;
+          cursor: pointer;
+          position: relative;
+          
+          /* base version of the button, which is dark */
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.00) 100%), var(--neutral-solid-700);
+          box-shadow: 0px 0px 0px 1px var(--neutral-solid-700), 0px 1px 2px 0px rgba(13, 13, 18, 0.40);
+
+          outline: 1px solid transparent;
+          outline-offset: 2px;
+
+          transition: 150ms all;
+        }
+
+        /* Stroke of the buttons */
+        button::before {
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          border-radius: 6px;
+          background: var(--form-button-stroke, linear-gradient(180deg, rgba(255, 255, 255, 0.16) 16%, rgba(255, 255, 255, 0.00) 100%));
+          top: 0;
+          left: 0;            
+        }
+
+        /* Base Background Filler */
+        button::after {
+          content: "";
+          width: calc(100% - 2px);
+          height: calc(100% - 2px);
+          position: absolute;
+          border-radius: 5px;
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.00) 100%), var(--neutral-solid-700);
+          top: 1px;
+          left: 1px;   
+        }
+
+        button span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-grow: 1;
+          z-index: 5;
+          padding: 6px 8px;
+
+          font-size: 14px;
+          line-height: 32px;
+          font-weight: 500;
+          color: var(--text-white);
+          text-align: center;
+          border-radius: 6px;
+          transition: 150ms all;
+        }
+
+        button span:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.00) 100%);
+          opacity: 0.07;
+          border-radius: 6px;
+
+          transition: 150ms all;
+        }
+        
+        button:hover span:before {
+          opacity: 0.14;
+        }
+
+        button:focus {
+          outline: 1px solid rgba(95, 87, 255, .5);
+          outline-offset: 2px;
+        }
+
+        /* Normal Active State */
+        button:active span:before {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 100%), var(--neutral-solid-700);
+          opacity: 0.14;
+        }
+
+        /* This is to provide safe spacing for icons, I didn't want to mix span with span so used em, however if anyone has a better solution to achieve safe spacing without adding another element like em, feel free to suggest me */
+        button span em {
+          padding: 0 4px;
+          font-style: normal;
+        }
+
+        /* WHITE */
+        /* White Base */
+        button.white {
+          background: var(--background-white);
+          box-shadow: 0px 0px 0px 1px rgba(18, 55, 105, 0.08), 0px 1px 2px 0px rgba(164, 172, 185, 0.24);
+        }
+        
+        /* White Background Filler */
+        button.white:after {
+          background: transparent;
+        }
+        
+        /* Make button text color dark for white version */
+        button.white span {
+          color: var(--text-muted-600);
+        }
+        
+        /* override normal color styling, white is different and do not need inner gradient */
+        button.white:active span:before {
+          opacity: 0;
+        }
+        
+        button.white:hover span:before {
+          background: transparent;
+        }
+
+        button.white:hover {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(193, 199, 208, 0.08) 100%), #FFF;
+          box-shadow: 0px 0px 0px 1px rgba(18, 55, 105, 0.08), 0px 1px 2px 0px rgba(164, 172, 185, 0.24), 0px 3px 6px 0px rgba(164, 172, 185, 0.24);
+        }
+
+        button.white:active {
+          background: linear-gradient(180deg, rgba(193, 199, 208, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%), #FFF;
+        }
+
+        /* PURPLE */
+        /* Purple Base */
+        button.purple {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%), var(--form-button-primary-normal);
+          box-shadow: 0px 0px 0px 1px #4F47EB, 0px 1px 2px 0px rgba(26, 19, 161, 0.50);
+        }
+        
+        /* Purple Background Filler */
+        button.purple:after {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%), var(--form-button-primary-normal);
+        }
+        
+        /* Purple Active State */
+        button.purple:active:after, button.purple:active {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.16) 100%), var(--form-button-primary-pressed);
+        }
+        button.purple:active span:before {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.16) 100%), var(--form-button-primary-pressed);
+          opacity: .14;
+        }
+
+        /* RED */
+        /* Red Base */
+        button.red {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%), var(--form-button-destructive-normal);
+          box-shadow: 0px 0px 0px 1px #B71836, 0px 1px 2px 0px rgba(113, 14, 33, 0.50);
+        }
+        
+        /* Red Background Filler */
+        button.red:after {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.00) 100%), var(--form-button-destructive-normal);
+        }
+        
+        /* Red Active State */
+        button.red:active span:before {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.16) 100%), var(--form-button-destructive-pressed);
+          opacity: .14;
+        }
+        button.red:active:after, button.red:active {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.16) 100%), var(--form-button-destructive-pressed);
+        }
+    </style>
+</head>
+<body>
+  <button>
+    <span>
+      <em>Create Form</em>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.20001 13.6L11.8 10L8.20001 6.40002" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>        
+    </span>
+  </button>
+  
+  <button class="purple">
+    <span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.8 13.6L8.20001 10L11.8 6.40002" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <em>Create Form</em>
+    </span>
+  </button>
+  
+  <button class="red">
+    <span>
+      <em>Create Form</em>
+    </span>
+  </button>
+
+  <button class="white">
+    <span>
+      <em>Create Form</em>
+    </span>
+  </button>
+</body>
+</html>
